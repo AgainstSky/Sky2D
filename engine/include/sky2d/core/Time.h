@@ -8,22 +8,30 @@
 namespace sky2d {
     class Time {
     public:
-        Time(): deltaTime_(0), totalTime_(0), timeScale_(1.0f) {
-        };
 
-        Time &setTimeScale(float timeScale) {
+        Time &setTimeScale(const float timeScale) {
             timeScale_ = timeScale;
             return *this;
         }
-
+        [[nodiscard]]
         float getTimeScale() { return timeScale_; }
-        int getDeltaTime() { return deltaTime_ * timeScale_; }
-        int getTotalTime() { return totalTime_; }
+
+        [[nodiscard]]
+        int getDeltaTime() { return deltaTime_; }
+
+        [[nodiscard]]
+        int getElapsedTime() { return elapsedTime_; }
+
+        [[nodiscard]]
+        int getFPS() { return fps_; }
+
+        void update();
 
     private:
-        int deltaTime_;
-        int totalTime_;
-        float timeScale_;
+        int deltaTime_{0};
+        int elapsedTime_{0};
+        float timeScale_{1.0f};
+        int fps_{1};
     };
 } // sky2d
 

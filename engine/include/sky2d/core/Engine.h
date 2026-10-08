@@ -5,6 +5,7 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 #include "raylib.h"
+#include "ResourceManager.h"
 
 namespace sky2d {
 
@@ -16,6 +17,7 @@ namespace sky2d {
 
         void run();
     private:
+        ResourceManager resource_;
         int width_, height_;
         const char* title_;
     };
