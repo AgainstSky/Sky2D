@@ -17,7 +17,7 @@ namespace sky2d {
 
         void run();
     private:
-        ResourceManager resource_;
+        // ResourceManager resource_;
         int width_, height_;
         const char* title_;
     };
