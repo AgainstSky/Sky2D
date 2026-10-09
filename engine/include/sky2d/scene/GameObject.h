@@ -46,8 +46,9 @@ namespace sky2d {
         static_assert(std::is_base_of<Component, T>::value,"T must derive from Component");
         auto component = std::make_unique<T>(std::forward<Args>(args)...);
         T* result = component.get();
+        component->gameObject_ = this;
         components_.push_back(std::move(component));
-        result.onAttach();
+        result->onAttach();
         return result;
     }
 

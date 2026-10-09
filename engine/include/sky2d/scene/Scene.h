@@ -16,11 +16,11 @@ namespace sky2d {
     class Scene {
     public:
         virtual ~Scene() = default;
-        virtual void onEnter();
-        virtual void onExit();
+        virtual void onEnter(){};
+        virtual void onExit(){};
         virtual void draw();
 
-        virtual void update(Time time);
+        virtual void update(Time const& time);
         GameObject* createGameObject();
         void destroyGameObject(GameObject* gameObject);
 

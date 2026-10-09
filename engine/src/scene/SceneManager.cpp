@@ -5,7 +5,12 @@
 #include <sky2d/scene/SceneManager.h>
 #include <sky2d/scene/Scene.h>
 namespace sky2d {
-    void SceneManager::pushScene(ScenePtr &scene) {
+    SceneManager::SceneManager() {
+            sceneStack_=std::vector<ScenePtr>();
+            sceneStack_.reserve(5);
+    }
+
+    void SceneManager::pushScene(ScenePtr scene) {
         if (!scene) {
             return;
         }
@@ -29,7 +34,7 @@ namespace sky2d {
         }
     }
 
-    void SceneManager::update(const Time time) {
+    void SceneManager::update( Time const& time) {
         auto scene = currentScene();
         if (scene) {
             scene->update(time);

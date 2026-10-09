@@ -5,6 +5,10 @@
 #include <sky2d/core/ResourceManager.h>
 
 namespace sky2d {
+    void ResourceManager::setRootPath(const std::string &rootPath) {
+        assetsRootPath_ = rootPath;
+    }
+
     Texture2D ResourceManager::loadTexture(const std::string& texturePath) const {
         const std::string path = assetsRootPath_ +"/"+ texturePath;
         auto image = LoadImage(path.c_str());
@@ -24,13 +28,13 @@ namespace sky2d {
         UnloadImage(image);
         return texture;
     }
-    Texture2D& ResourceManager::getTexture(const std::string& texturePath){
+    Texture2D* ResourceManager::getTexture(const std::string& texturePath){
         auto it = textureMap_.find(texturePath);
         if (it == textureMap_.end()) {
             auto [newIt,inserted] = textureMap_.emplace(texturePath,loadTexture(texturePath));
-            return newIt->second;
+            return &newIt->second;
         }
-        return it->second;
+        return &it->second;
     }
     void ResourceManager::unloadAll() {
         for (auto &item:textureMap_) {

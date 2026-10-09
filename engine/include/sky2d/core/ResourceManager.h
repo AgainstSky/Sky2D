@@ -14,10 +14,12 @@ namespace sky2d {
 
     class ResourceManager {
     public:
+        ResourceManager()=default;
         explicit ResourceManager(const std::string& rootPath):assetsRootPath_(rootPath) {}
-        Texture2D& getTexture(const std::string& texturePath) ;
+        Texture2D* getTexture(const std::string& texturePath) ;
         void unloadAll();
         ~ResourceManager(){unloadAll();};
+        void setRootPath(const std::string& rootPath);
     private:
         Texture2D loadTexture(const std::string& texturePath) const;
         std::string assetsRootPath_;

@@ -5,8 +5,10 @@
 #include <sky2d/scene/Scene.h>
 #include <sky2d/scene/GameObject.h>
 
+#include "sky2d/component/Camera.h"
+
 namespace sky2d {
-    void Scene::update(Time time) {
+    void Scene::update(Time const& time) {
         for (const auto &obj:gameObjects_) {
             obj->update(time);
         }
@@ -38,9 +40,26 @@ namespace sky2d {
     // }
 
     void Scene::draw() {
+        sky2d::Camera* activeCamera = nullptr;
+        for (const auto &obj:gameObjects_) {
+
+            if (auto *camera = obj->getComponent<Camera>()) {
+                activeCamera = camera;
+                break;
+            }
+        }
+        if (activeCamera) {
+            activeCamera->begin();
+        }
+
         for (const auto &obj:gameObjects_) {
             obj->draw();
         }
+
+        if (activeCamera) {
+            activeCamera->end();
+        }
+
     }
 
 };

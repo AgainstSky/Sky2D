@@ -5,10 +5,10 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 #include "raylib.h"
-
+#include <sky2d/component/Component.h>
 namespace sky2d {
 
-class Camera {
+class Camera : public Component{
 public:
     Camera();
     [[nodiscard]]
@@ -21,7 +21,6 @@ public:
     void end() {
         EndMode2D();
     }
-    ~Camera();
 private:
     Camera2D camera_{};
 };
