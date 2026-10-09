@@ -14,22 +14,22 @@ namespace sky2d {
             return *this;
         }
         [[nodiscard]]
-        float getTimeScale() { return timeScale_; }
+        float getTimeScale()const { return timeScale_; }
 
         [[nodiscard]]
-        int getDeltaTime() { return deltaTime_; }
+        float getDeltaTime() const{ return deltaTime_; }
 
         [[nodiscard]]
-        int getElapsedTime() { return elapsedTime_; }
+        float getElapsedTime() const{ return elapsedTime_; }
 
         [[nodiscard]]
-        int getFPS() { return fps_; }
+        int getFPS() const{ return fps_; }
 
         void update();
 
     private:
-        int deltaTime_{0};
-        int elapsedTime_{0};
+        float deltaTime_{0.0f};
+        float  elapsedTime_{0.0f};
         float timeScale_{1.0f};
         int fps_{1};
     };
